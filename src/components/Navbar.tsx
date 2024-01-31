@@ -2,7 +2,8 @@
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, Cog8ToothIcon, QuestionMarkCircleIcon, XMarkIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
 import { Fragment, JSXElementConstructor, Key, PromiseLikeOfReactNode, ReactElement, ReactNode } from 'react';
-import { useRouter } from 'next/router';
+
+import { usePathname, useRouter } from 'next/navigation';
 
 const navigation = [
   { name: 'Boards', href: '/Boards' },
@@ -14,11 +15,9 @@ function classNames(...classes: string[]) {
 
 export default function Navbar() {
 
-  const router = useRouter();
 
-  const handleItemClick = (href: string) => {
-    router.push(href);
-  };
+const pathname = usePathname();
+const router = useRouter()
 
   return (
     <Disclosure as="nav" className="bg-primary z-10">
@@ -64,7 +63,7 @@ export default function Navbar() {
                         key={item.name}
                         onClick={() => router.push(item.href)}
                         className={classNames(
-                          router.pathname === item.href ? 'bg-transparent border-white border text-white' : 'text-white hover:bg-gray-700 hover:text-white',
+                          pathname === item.href ? 'bg-transparent border-white border text-white' : 'text-white hover:bg-gray-700 hover:text-white',
                           'rounded-md px-3 py-2 text-sm font-medium'
                         )}
                       >
@@ -179,7 +178,7 @@ export default function Navbar() {
                   as="a"
                   href={item.href}
                   className={classNames(
-                    router.pathname === item.href ? 'bg-gray-900 text-white' : 'text-white hover:bg-gray-700 hover:text-white',
+                    pathname === item.href ? 'bg-gray-900 text-white' : 'text-white hover:bg-gray-700 hover:text-white',
                     'block rounded-md px-3 py-2 text-base font-medium'
                   )}
 

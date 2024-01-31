@@ -6,6 +6,7 @@ import  metricsData from '@/utils/metricsData' ;
 import  contractsData from '@/utils/contractsData'
 import { Disclosure } from '@headlessui/react'
 import { ChevronRightIcon, ChevronDownIcon, PlusIcon } from '@heroicons/react/24/outline'
+import { DotsItem } from '@nivo/core';
 
 
 const RootLayout = dynamic(() => import('@/app/layout'), { ssr: false })
