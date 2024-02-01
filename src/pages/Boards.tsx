@@ -1,14 +1,13 @@
 "use client"
 import React from 'react';
 import dynamic from 'next/dynamic'
-import { ResponsiveLine } from '@nivo/line';
-import  metricsData from '@/utils/metricsData' ;
-import  contractsData from '@/utils/contractsData'
-import  chartsData from '@/utils/chartsData'
+import metricsData from '@/utils/metricsData';
+import contractsData from '@/utils/contractsData'
+import chartsData from '@/utils/chartsData'
 import LineChart from '@/components/LineChart';
-import { Disclosure } from '@headlessui/react'
-import { ChevronRightIcon, ChevronDownIcon, PlusIcon } from '@heroicons/react/24/outline'
-import { DotsItem } from '@nivo/core';
+import { Disclosure, Transition } from '@headlessui/react'
+import { ChevronDownIcon, PlusIcon } from '@heroicons/react/24/outline'
+import DateTabs from '@/components/DateTabs';
 
 
 const RootLayout = dynamic(() => import('@/app/layout'), { ssr: false })
@@ -19,26 +18,44 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
+const tabs = [
+  { id: 'profile', label: 'Profile' },
+  { id: 'dashboard', label: 'Dashboard' },
+  { id: 'settings', label: 'Settings' },
+  { id: 'invoice', label: 'Invoice' },
+];
 export default function Boards() {
-
   const jsonData = chartsData;
-
-  const chartData = 
-
-  [
+  const chartData = [
     {
       id: 'A: Transfer ERC-20',
       data: Object.entries(jsonData[0].data.series['A: Transfer ERC-20']).map(([timestamp, value]) => ({
         x: new Date(parseInt(timestamp)),
         y: value,
       })),
+    },
+    {
+      id: 'B: Transfer Test',
+      data: Object.entries(jsonData[1].data.series['A: Transfer ERC-20']).map(([timestamp, value]) => ({
+        x: new Date(parseInt(timestamp)),
+        y: value,
+      })),
     }
   ];
 
+  const tabs = [
+    { id: 'Custom', label: 'Custom' },
+    { id: 'Today', label: 'Today' },
+    { id: 'Yesterday', label: 'Yesterday'},
+    { id: '7D', label: '7D'},
+    { id: '30D', label: '30D'},
+    { id: '3M', label: '3M'},
+    { id: '6M', label: '6M'},
+    { id: '12M', label: '12M'},
+  ];
 
   return (
     <RootLayout>
-
       <>
         <div className="flex flex-col h-screen">
           <header className="bg-white shadow z-9">
@@ -117,7 +134,7 @@ export default function Boards() {
                       <Disclosure defaultOpen>
                         {({ open }) => (
                           <>
-                            <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-2 text-left text-sm font-bold text-1 tracking-tight text-gray-900">
+                            <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-2 text-left text-sm font-bold text-1 tracking-tight text-gray-900  hover:bg-blue-100 focus:outline-none focus-visible:ring focus-visible:ring-primary-500/75">
                               <span className="text-gray-900 text-lg font-inter font-semibold leading-5 break-all">Metrics</span>
                               <PlusIcon
                                 className={`${open ? 'rotate-180 transform' : ''
@@ -126,10 +143,10 @@ export default function Boards() {
                             </Disclosure.Button>
                             {metrics.map((metric) => (
                               <div className='mt-4'>
-                               <Disclosure.Panel className="px-4 pb-2 pt-4 text-md rounded-lg bg-white shadow py-2 text-gray-500 ">
-                               <div className="text-blue-600 text-xs font-medium font-inter leading-4">{metric.metric_display_name}</div>
-                               <span className="text-slate-500 text-xs font-medium font-inter leading-4">{metric.operations[6].operation_description} for HonToken (ERC20) on Avalanche C-Chain </span>
-                              </Disclosure.Panel>
+                                <Disclosure.Panel className="px-4 pb-2 pt-4 text-md rounded-lg bg-white shadow py-2 text-gray-500 ">
+                                  <div className="text-blue-600 text-xs font-medium font-inter leading-4">{metric.metric_display_name}</div>
+                                  <span className="text-slate-500 text-xs font-medium font-inter leading-4">{metric.operations[6].operation_description} for HonToken (ERC20) on Avalanche C-Chain </span>
+                                </Disclosure.Panel>
                               </div>
                             ))}
                           </>
@@ -141,20 +158,20 @@ export default function Boards() {
                       <Disclosure >
                         {({ open }) => (
                           <>
-                            <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-2 text-left text-sm font-bold text-1 tracking-tight text-gray-900">
+                            <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-2 text-left text-sm font-bold text-1 tracking-tight text-gray-900  hover:bg-blue-100 focus:outline-none focus-visible:ring focus-visible:ring-primary-500/75">
                               <span className="text-gray-900 text-lg font-inter font-semibold leading-5 break-all">Filter</span>
                               <PlusIcon
                                 className={`${open ? 'rotate-180 transform' : ''
                                   } h-5 w-5 text-gray-900`}
                               />
                             </Disclosure.Button>
-                          
-                              <div className='mt-4'>
-                               <Disclosure.Panel className="px-4 pb-2 pt-4 text-md rounded-lg bg-white shadow py-2 text-gray-500 ">
-                  
+
+                            <div className='mt-4'>
+                              <Disclosure.Panel className="px-4 pb-2 pt-4 text-md rounded-lg bg-white shadow py-2 text-gray-500 ">
+
                               </Disclosure.Panel>
-                              </div>
-                        
+                            </div>
+
                           </>
                         )}
                       </Disclosure>
@@ -164,20 +181,20 @@ export default function Boards() {
                       <Disclosure >
                         {({ open }) => (
                           <>
-                            <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-2 text-left text-sm font-bold text-1 tracking-tight text-gray-900">
+                            <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-2 text-left text-sm font-bold text-1 tracking-tight text-gray-900  hover:bg-blue-100 focus:outline-none focus-visible:ring focus-visible:ring-primary-500/75">
                               <span className="text-gray-900 text-lg font-inter font-semibold leading-5 break-all">Breakdown</span>
                               <PlusIcon
                                 className={`${open ? 'rotate-180 transform' : ''
                                   } h-5 w-5 text-gray-900`}
                               />
                             </Disclosure.Button>
-                          
-                              <div className='mt-4'>
-                               <Disclosure.Panel className="px-4 pb-2 pt-4 text-md rounded-lg bg-white shadow py-2 text-gray-500 ">
-                               
+
+                            <div className='mt-4'>
+                              <Disclosure.Panel className="px-4 pb-2 pt-4 text-md rounded-lg bg-white shadow py-2 text-gray-500 ">
+
                               </Disclosure.Panel>
-                              </div>
-                           
+                            </div>
+
                           </>
                         )}
                       </Disclosure>
@@ -186,9 +203,10 @@ export default function Boards() {
                 </div>
               </div>
               <div className="w-4/5 max-w-7xl py-6 lg:px-8 h-full shadow">
-              <div style={{ height: '400px' }}>
-              <LineChart data={chartData} />
-    </div>
+              <DateTabs tabs={tabs} />
+                <div style={{ height: '400px' }}>
+                  <LineChart data={chartData} />
+                </div>
               </div>
             </div>
           </main>

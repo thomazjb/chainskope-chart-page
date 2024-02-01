@@ -31,6 +31,7 @@ const LineChart = ({ data }:any) => {
         pointLabel="y"
         pointLabelYOffset={-12}
         enableArea={true}
+        enableGridX={false}
         enablePoints={false}
         useMesh={true}
         legends={[
@@ -38,11 +39,11 @@ const LineChart = ({ data }:any) => {
             anchor: 'top',
             direction: 'row',
             justify: false,
-            translateX: 100,
+            translateX: 0,
             translateY: -50,
-            itemsSpacing: 0,
+            itemsSpacing: 50,
             itemDirection: 'left-to-right',
-            itemWidth: 80,
+            itemWidth: 100,
             itemHeight: 20,
             itemOpacity: 0.75,
             symbolSize: 12,
