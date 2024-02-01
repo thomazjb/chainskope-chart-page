@@ -1,9 +1,11 @@
 "use client"
 import React from 'react';
 import dynamic from 'next/dynamic'
-import LineChart from '@/components/LineChart';
+import { ResponsiveLine } from '@nivo/line';
 import  metricsData from '@/utils/metricsData' ;
 import  contractsData from '@/utils/contractsData'
+import  chartsData from '@/utils/chartsData'
+import LineChart from '@/components/LineChart';
 import { Disclosure } from '@headlessui/react'
 import { ChevronRightIcon, ChevronDownIcon, PlusIcon } from '@heroicons/react/24/outline'
 import { DotsItem } from '@nivo/core';
@@ -18,6 +20,22 @@ function classNames(...classes: string[]) {
 }
 
 export default function Boards() {
+
+  const jsonData = chartsData;
+
+  const chartData = 
+
+  [
+    {
+      id: 'A: Transfer ERC-20',
+      data: Object.entries(jsonData[0].data.series['A: Transfer ERC-20']).map(([timestamp, value]) => ({
+        x: new Date(parseInt(timestamp)),
+        y: value,
+      })),
+    }
+  ];
+
+
   return (
     <RootLayout>
 
@@ -118,11 +136,59 @@ export default function Boards() {
                         )}
                       </Disclosure>
                     </div>
+
+                    <div className='mt-2'>
+                      <Disclosure >
+                        {({ open }) => (
+                          <>
+                            <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-2 text-left text-sm font-bold text-1 tracking-tight text-gray-900">
+                              <span className="text-gray-900 text-lg font-inter font-semibold leading-5 break-all">Filter</span>
+                              <PlusIcon
+                                className={`${open ? 'rotate-180 transform' : ''
+                                  } h-5 w-5 text-gray-900`}
+                              />
+                            </Disclosure.Button>
+                          
+                              <div className='mt-4'>
+                               <Disclosure.Panel className="px-4 pb-2 pt-4 text-md rounded-lg bg-white shadow py-2 text-gray-500 ">
+                  
+                              </Disclosure.Panel>
+                              </div>
+                        
+                          </>
+                        )}
+                      </Disclosure>
+                    </div>
+
+                    <div className='mt-2'>
+                      <Disclosure >
+                        {({ open }) => (
+                          <>
+                            <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-2 text-left text-sm font-bold text-1 tracking-tight text-gray-900">
+                              <span className="text-gray-900 text-lg font-inter font-semibold leading-5 break-all">Breakdown</span>
+                              <PlusIcon
+                                className={`${open ? 'rotate-180 transform' : ''
+                                  } h-5 w-5 text-gray-900`}
+                              />
+                            </Disclosure.Button>
+                          
+                              <div className='mt-4'>
+                               <Disclosure.Panel className="px-4 pb-2 pt-4 text-md rounded-lg bg-white shadow py-2 text-gray-500 ">
+                               
+                              </Disclosure.Panel>
+                              </div>
+                           
+                          </>
+                        )}
+                      </Disclosure>
+                    </div>
                   </div>
                 </div>
               </div>
               <div className="w-4/5 max-w-7xl py-6 lg:px-8 h-full shadow">
-                <h1>OPA</h1>
+              <div style={{ height: '400px' }}>
+              <LineChart data={chartData} />
+    </div>
               </div>
             </div>
           </main>

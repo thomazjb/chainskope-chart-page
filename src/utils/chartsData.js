@@ -1,5 +1,4 @@
-[
-    {
+const chartsData = [{
       "success": true,
       "data": {
         "date_selection": {
@@ -436,4 +435,5 @@
       },
       "errors": null
     }
-]
+  ]
+module.exports = chartsData;

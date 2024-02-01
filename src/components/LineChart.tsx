@@ -10,7 +10,7 @@ const LineChart = ({ data }:any) => {
         margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
         xScale={{ type: 'time', format: '%Y-%m-%d' }}
         yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: false, reverse: false }}
-        curve="monotoneX"
+        curve="linear"
         axisTop={null}
         axisRight={null}
         axisBottom={{
@@ -31,21 +31,22 @@ const LineChart = ({ data }:any) => {
         pointLabel="y"
         pointLabelYOffset={-12}
         enableArea={true}
+        enablePoints={false}
         useMesh={true}
         legends={[
           {
-            anchor: 'bottom-right',
-            direction: 'column',
+            anchor: 'top',
+            direction: 'row',
             justify: false,
             translateX: 100,
-            translateY: 0,
+            translateY: -50,
             itemsSpacing: 0,
             itemDirection: 'left-to-right',
             itemWidth: 80,
             itemHeight: 20,
             itemOpacity: 0.75,
             symbolSize: 12,
-            symbolShape: 'circle',
+            symbolShape: 'square',
             symbolBorderColor: 'rgba(0, 0, 0, .5)',
             effects: [
               {
