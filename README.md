@@ -2,7 +2,11 @@
 
 ## Overview
 
-Welcome to the Chainskope Chart Page! This project provides a visually appealing and interactive platform for displaying charts and data visualizations.
+Welcome to the Chainskope Chart Page! This project serves as a foundation for a job application test and personal studies in data visualization.
+
+## Purpose
+
+The primary purpose of this repository is to showcase skills in creating a dynamic and visually appealing chart page using Next.js.
 
 ## Features
 
@@ -20,6 +24,8 @@ Make sure you have the following installed:
 - [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
 
 ### Installation
+
+This project follows the standard setup for a Next.js project:
 
 1. Clone the repository:
 
