@@ -10,6 +10,7 @@ import { ChevronDownIcon, PlusIcon } from '@heroicons/react/24/outline';
 import DateTabs from '@/components/DateTabs';
 import Link from 'next/link';
 
+
 const RootLayout = dynamic(() => import('@/app/layout'), { ssr: false });
 
 const metrics = metricsData.data.data;
@@ -21,7 +22,7 @@ function classNames(...classes: string[]) {
 export default function Boards() {
   const jsonData = chartsData;
   const chartData = jsonData.map((chart, index) => ({
-    id: `Chart-${index}`,
+    id: `Event-${index}` + ` [${chart.data.metadata['A: Transfer ERC-20'].operation}]`,
     data: Object.entries(chart.data.series['A: Transfer ERC-20']).map(([timestamp, value]) => ({
       x: new Date(parseInt(timestamp)),
       y: value,
