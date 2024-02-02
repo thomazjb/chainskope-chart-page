@@ -32,6 +32,24 @@ export default function Boards() {
   const [title, setTitle] = useState('Untitled');
   const [description, setDescription] = useState('');
 
+  const dataSourceItens = [
+    {
+      id: 1,
+      name: "Cool NFT Collection Name",
+      image: "/img/cool_nft_name.png",
+    },
+    {
+      id: 2,
+      name: "Rumble Kong",
+      image: "/img/rumble_kong.png",
+    },
+    {
+      id: 3,
+      name: "Punks2023",
+      image: "/img/punks2023.png",
+    },
+  ];
+
   return (
     <RootLayout>
       <>
@@ -72,47 +90,24 @@ export default function Boards() {
                             />
                           </Disclosure.Button>
                           <Disclosure.Panel className="px-4 pb-2 pt-4 text-sm rounded-lg bg-white shadow py-2 text-gray-500">
-                            <div className="flex items-center">
-                              <label className="inline-flex items-center">
-                                <input type="checkbox" className="form-checkbox h-4 w-4 text-gray-700" />
-                                <span className="ml-2 text-gray-900">
-                                  <div className="flex items-center">
-                                    <img
-                                      className="h-6 w-6 rounded-full border outline-2 border-gray-400"
-                                      src='/img/cool_nft_name.png'
-                                      alt=""
-                                    />
-                                    <p className="text-gray-900 ml-2 font-inter text-xs">Cool NFT Collection Name</p>
-                                  </div></span>
-                              </label>
-                            </div>
-                            <div className="flex items-center mt-2">
-                              <label className="inline-flex items-center">
-                                <input type="checkbox" className="form-checkbox h-4 w-4 text-gray-700" />
-                                <span className="ml-2 text-gray-900">
-                                  <div className="flex items-center">
-                                    <img
-                                      className="h-6 w-6 rounded-full border outline-2 border-gray-400"
-                                      src='/img/rumble_kong.png'
-                                      alt=""
-                                    />
-                                    <p className="text-gray-900 ml-2 font-inter text-xs">Rumble Kong</p>
-                                  </div></span>
-                              </label>
-                            </div>
-                            <div className="flex items-center mt-2">
-                              <label className="inline-flex items-center">
-                                <input type="checkbox" className="form-checkbox h-4 w-4 text-gray-700" />
-                                <span className="ml-2 text-gray-900">
-                                  <div className="flex items-center">
-                                    <img
-                                      className="h-6 w-6 rounded-full border outline-2 border-gray-400"
-                                      src='/img/punks2023.png'
-                                      alt=""
-                                    />
-                                    <p className="text-gray-900 ml-2 font-inter text-xs">Punks2023</p>
-                                  </div></span>
-                              </label>
+                            <div>
+                              {dataSourceItens.map(item => (
+                                <div key={item.id} className="flex items-center mt-2">
+                                  <label className="inline-flex items-center">
+                                    <input type="checkbox" className="form-checkbox h-4 w-4 text-blue-500 rounded-sm" />
+                                    <span className="ml-2 text-gray-900">
+                                      <div className="flex items-center">
+                                        <img
+                                          className="h-6 w-6 rounded-full border outline-2 border-gray-400"
+                                          src={item.image}
+                                          alt=""
+                                        />
+                                        <p className="text-gray-900 ml-2 font-inter text-xs">{item.name}</p>
+                                      </div>
+                                    </span>
+                                  </label>
+                                </div>
+                              ))}
                             </div>
                             <hr className="my-4 border-t border-gray-300" />
                             <div className="flex items-center justify-center">
