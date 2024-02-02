@@ -44,29 +44,20 @@ export default function Boards() {
     }
   ];
 
-  const tabs = [
-    { id: 'Custom', label: 'Custom' },
-    { id: 'Today', label: 'Today' },
-    { id: 'Yesterday', label: 'Yesterday'},
-    { id: '7D', label: '7D'},
-    { id: '30D', label: '30D'},
-    { id: '3M', label: '3M'},
-    { id: '6M', label: '6M'},
-    { id: '12M', label: '12M'},
-  ];
 
   return (
     <RootLayout>
       <>
         <div className="flex flex-col h-screen">
           <header className="bg-white z-9 border-b border-gray-300">
-            <div className="mx-auto max-w-8xl px-4 py-3 sm:px-4 lg:px-4">
-              <h1 className="text-1 font-bold tracking-tight text-gray-900">Untitled</h1>
+            <div className="mx-auto max-w-8xl px-4 py-3 sm:px-4 lg:px-4 flex items-center">
+              <h1 className="text-2xl font-bold tracking-tight text-gray-900">Untitled</h1>
+              <p className="text-neutral-500 text-xs pl-2">+ Add description...</p>
             </div>
           </header>
           <main className="flex-1 overflow-y-auto">
             <div className="flex h-full">
-              <div className="w-1/5 bg-neutral-50 max-w-4xl py-6 sm:px-2 lg:px-2 h-full border-r border-gray-300">
+              <div className="w-1/5 bg-neutral-100 max-w-4xl py-6 sm:px-2 lg:px-2 h-full border-r border-gray-300">
                 <div className="w-full px-4">
                   <div className="mx-auto w-full max-w-md rounded-2xl p-2">
                     <Disclosure defaultOpen>
@@ -203,12 +194,22 @@ export default function Boards() {
                   </div>
                 </div>
               </div>
-              <div className="w-4/5 max-w-7xl py-6 lg:px-8 h-full shadow">
-              <DateTabs tabs={tabs} />
-                <div style={{ height: '400px' }}>
+              <div className="w-4/5 py-6 lg:px-8 h-full">
+                <div className='p-2'>
+                  <DateTabs />
+                </div>
+                <div className='m-2'>
+                  <div className="px-4 sm:px-0 border-b-[1px]">
+                    <h3 className="text-base font-semibold leading-7 text-gray-900">Title</h3>
+                    <p className="mt-1 mb-2 border-neutral-400 max-w-2xl text-sm leading-6 text-gray-500">You can identify your most engaged users by using cohorts.</p>
+                  </div>
+                </div>
+                <div style={{ height: '400px' }} className='p-2'>
                   <LineChart data={chartData} />
                 </div>
               </div>
+
+
             </div>
           </main>
         </div>

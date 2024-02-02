@@ -9,6 +9,25 @@ const navigation = [
   { name: 'Boards', href: '/Boards' },
   { name: 'Reports', href: '/Reports' },
 ];
+type MenuItem = {
+  text?: string;
+  href?: string;
+  isDivider?: boolean;
+};
+
+const menuItems: MenuItem[] = [
+  { text: 'Organization Settings', href: '/Boards' },
+  { text: 'Project Settings', href: '/Boards' },
+  { text: 'Personal Settings', href: '/Boards' },
+  { isDivider: true },
+  { text: 'Shortcuts', href: '/Boards' },
+  { text: 'Data Sources', href: '/Boards' },
+  { text: 'Plan details and billing', href: '/Boards' },
+  { text: 'Invite users', href: '/Boards' },
+  { isDivider: true },
+  { text: 'Log out', href: '/Boards' },
+];
+
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
@@ -16,8 +35,8 @@ function classNames(...classes: string[]) {
 export default function Navbar() {
 
 
-const pathname = usePathname();
-const router = useRouter()
+  const pathname = usePathname();
+  const router = useRouter()
 
   return (
     <Disclosure as="nav" className="bg-primary z-10">
@@ -89,7 +108,7 @@ const router = useRouter()
 
                 <button
                   type="button"
-                  className="relative text-white hover:text-white-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                  className="relative text-white hover:text-white-400 focus:outline-none"
                 >
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">Help</span>
@@ -97,7 +116,7 @@ const router = useRouter()
                 </button>
                 <button
                   type="button"
-                  className="relative text-white hover:text-white-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                  className="relative text-white hover:text-white-400 focus:outline-none"
                 >
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">Configurations</span>
@@ -111,10 +130,10 @@ const router = useRouter()
                       <div className="flex items-center">
                         <img
                           className="h-8 w-8 rounded-full"
-                          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                          src='/img/thomaz_profile.png'
                           alt=""
                         />
-                        <span className="text-white ml-2">Thomaz</span>
+                        <span className="text-white ml-2">Thomaz Boncompagni</span>
                         <svg className="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                           <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
                         </svg>
@@ -131,36 +150,29 @@ const router = useRouter()
                     leaveTo="transform opacity-0 scale-95"
                   >
                     <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      <Menu.Item>
-                        {({ active }) => (
-                          <Link
-                            href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                          >
-                            Your Profile
-                          </Link>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <Link
-                            href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                          >
-                            Settings
-                          </Link>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <Link
-                            href="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                          >
-                            Sign out
-                          </Link>
-                        )}
-                      </Menu.Item>
+                      {menuItems.map((item, index) => (
+                        <Menu.Item key={index}>
+                          {({ active }) => (
+                            <>
+                              {item.isDivider ? (
+                                <hr className="my-1 border-t border-neutral-300" />
+                              ) : (
+                                <Link href={item.href || '#'}>
+                                  <Link
+                                    href=""
+                                    className={classNames(
+                                      active ? 'bg-gray-100' : '',
+                                      'block px-4 py-2 text-sm text-neutral-800'
+                                    )}
+                                  >
+                                    {item.text}
+                                  </Link>
+                                </Link>
+                              )}
+                            </>
+                          )}
+                        </Menu.Item>
+                      ))}
                     </Menu.Items>
                   </Transition>
                 </Menu>
@@ -171,7 +183,6 @@ const router = useRouter()
           <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2">
               {navigation.map((item) => (
-
                 <Disclosure.Button
                   key={item.name}
                   as="a"
@@ -180,12 +191,9 @@ const router = useRouter()
                     pathname === item.href ? 'bg-gray-900 text-white' : 'text-white hover:bg-gray-700 hover:text-white',
                     'block rounded-md px-3 py-2 text-base font-medium'
                   )}
-
                 >
                   {item.name}
                 </Disclosure.Button>
-
-
               ))}
             </div>
           </Disclosure.Panel>

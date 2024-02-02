@@ -29,7 +29,7 @@ const LineChart = ({ data }:any) => {
         pointBorderColor={{ from: 'serieColor' }}
         pointLabel="y"
         pointLabelYOffset={-12}
-        enableArea={true}
+        enableArea={false}
         enableGridX={false}
         enablePoints={false}
         useMesh={true}

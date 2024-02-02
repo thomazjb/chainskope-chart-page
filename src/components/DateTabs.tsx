@@ -1,5 +1,4 @@
-// components/Tabs.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 interface Tab {
@@ -7,19 +6,44 @@ interface Tab {
   label: string;
 }
 
-interface TabsProps {
-  tabs: Tab[];
-}
-
-const DateTabs: React.FC<TabsProps> = ({ tabs }) => {
+const DateTabs = () => {
+  const tabs = [
+    { id: 'Custom', label: 'Custom' },
+    { id: 'Yesterday', label: 'Yesterday' },
+    { id: 'Today', label: 'Today' },
+    { id: '7D', label: '7D' },
+    { id: '30D', label: '30D' },
+    { id: '3M', label: '3M' },
+    { id: '6M', label: '6M' },
+    { id: '12M', label: '12M' },
+    { id: '24M', label: '24M' },
+  ];
   const [activeTab, setActiveTab] = useState(tabs[0].id);
+  const [tabWidths, setTabWidths] = useState<number[]>([]);
+
+  useEffect(() => {
+    const calculateTabWidths = () => {
+      const widths = tabs.map((tab) => {
+        const element = document.getElementById(`tab-${tab.id}`);
+        return element ? element.scrollWidth : 0;
+      });
+      setTabWidths(widths);
+    };
+
+    calculateTabWidths();
+    window.addEventListener('resize', calculateTabWidths);
+
+    return () => {
+      window.removeEventListener('resize', calculateTabWidths);
+    };
+  }, [tabs]);
 
   return (
-    <div className="rounded-lg flex max-h-[40px] border-2">
-      <nav className="flex max-h-[40px] w-2/5 font-inter text-xs font-bold ">
+
+      <nav className={`flex max-h-[40px] font-inter text-xs font-bold rounded-lg border-[1px] w-3/6`}>
         {tabs.map((tab, index) => (
           <Link
-          href="#"
+            href="#"
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             className={`cursor-pointer flex sm:px-4 text-center p-2 ${
@@ -29,13 +53,13 @@ const DateTabs: React.FC<TabsProps> = ({ tabs }) => {
                 ? 'bg-gray-200 text-gray-900'
                 : 'text-gray-500'
             }`}
+            style={{ flex: `0 0 ${tabWidths[index]}px` }}
+            id={`tab-${tab.id}`}
           >
             {tab.label}
           </Link>
         ))}
       </nav>
-    </div>
-
   );
 };
 
