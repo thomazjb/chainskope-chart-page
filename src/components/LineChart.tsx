@@ -4,10 +4,10 @@ import { ResponsiveLine } from '@nivo/line';
 const LineChart = ({ data }:any) => {
 
   return (
-    <div style={{ height: '400px' }}>
+    <div className='h-full'>
       <ResponsiveLine
         data={data}
-        margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+        margin={{ top: 50, right: 10, bottom: 50, left: 60 }}
         xScale={{ type: 'time', format: '%Y-%m-%d' }}
         yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: false, reverse: false }}
         curve="linear"
@@ -18,7 +18,6 @@ const LineChart = ({ data }:any) => {
           tickValues: 'every 1 month',
         }}
         axisLeft={{
-          
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,

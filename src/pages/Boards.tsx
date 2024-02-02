@@ -58,21 +58,21 @@ export default function Boards() {
     <RootLayout>
       <>
         <div className="flex flex-col h-screen">
-          <header className="bg-white shadow z-9">
+          <header className="bg-white z-9 border-b border-gray-300">
             <div className="mx-auto max-w-8xl px-4 py-3 sm:px-4 lg:px-4">
               <h1 className="text-1 font-bold tracking-tight text-gray-900">Untitled</h1>
             </div>
           </header>
           <main className="flex-1 overflow-y-auto">
             <div className="flex h-full">
-              <div className="w-1/5 bg-neutral-50 max-w-4xl py-6 sm:px-2 lg:px-2 h-full">
+              <div className="w-1/5 bg-neutral-50 max-w-4xl py-6 sm:px-2 lg:px-2 h-full border-r border-gray-300">
                 <div className="w-full px-4">
                   <div className="mx-auto w-full max-w-md rounded-2xl p-2">
                     <Disclosure defaultOpen>
                       {({ open }) => (
                         <>
-                          <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-2 text-left text-sm font-bold text-1 tracking-tight text-gray-900">
-                            <span className="text-gray-900 text-lg font-inter font-semibold leading-5 break-all">Data Source</span>
+                          <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-2 text-left text-md font-bold text-1 tracking-tight text-gray-900">
+                            <span className="text-gray-900 text-md font-inter font-semibold leading-5 break-all">Data Source</span>
                             <ChevronDownIcon
                               className={`${open ? 'rotate-180 transform' : ''
                                 } h-5 w-5 text-gray-900`}
@@ -134,15 +134,15 @@ export default function Boards() {
                       <Disclosure defaultOpen>
                         {({ open }) => (
                           <>
-                            <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-2 text-left text-sm font-bold text-1 tracking-tight text-gray-900  hover:bg-blue-100 focus:outline-none focus-visible:ring focus-visible:ring-primary-500/75">
-                              <span className="text-gray-900 text-lg font-inter font-semibold leading-5 break-all">Metrics</span>
+                            <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-2 text-left text-md font-bold text-1 tracking-tight text-gray-900  hover:bg-blue-100 focus:outline-none focus-visible:ring focus-visible:ring-primary-500/75">
+                              <span className="text-gray-900 text-md font-inter font-semibold leading-5 break-all">Metrics</span>
                               <PlusIcon
                                 className={`${open ? 'rotate-180 transform' : ''
                                   } h-5 w-5 text-gray-900`}
                               />
                             </Disclosure.Button>
                             {metrics.map((metric) => (
-                              <div className='mt-4'>
+                              <div className='mt-2'>
                                 <Disclosure.Panel className="px-4 pb-2 pt-4 text-md rounded-lg bg-white shadow py-2 text-gray-500 ">
                                   <div className="text-blue-600 text-xs font-medium font-inter leading-4">{metric.metric_display_name}</div>
                                   <span className="text-slate-500 text-xs font-medium font-inter leading-4">{metric.operations[6].operation_description} for HonToken (ERC20) on Avalanche C-Chain </span>
@@ -158,15 +158,15 @@ export default function Boards() {
                       <Disclosure >
                         {({ open }) => (
                           <>
-                            <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-2 text-left text-sm font-bold text-1 tracking-tight text-gray-900  hover:bg-blue-100 focus:outline-none focus-visible:ring focus-visible:ring-primary-500/75">
-                              <span className="text-gray-900 text-lg font-inter font-semibold leading-5 break-all">Filter</span>
+                            <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-2 text-left text-md font-bold text-1 tracking-tight text-gray-900  hover:bg-blue-100 focus:outline-none focus-visible:ring focus-visible:ring-primary-500/75">
+                              <span className="text-gray-900 text-md font-inter font-semibold leading-5 break-all">Filter</span>
                               <PlusIcon
                                 className={`${open ? 'rotate-180 transform' : ''
                                   } h-5 w-5 text-gray-900`}
                               />
                             </Disclosure.Button>
 
-                            <div className='mt-4'>
+                            <div className='mt-2'>
                               <Disclosure.Panel className="px-4 pb-2 pt-4 text-md rounded-lg bg-white shadow py-2 text-gray-500 ">
 
                               </Disclosure.Panel>
@@ -181,15 +181,15 @@ export default function Boards() {
                       <Disclosure >
                         {({ open }) => (
                           <>
-                            <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-2 text-left text-sm font-bold text-1 tracking-tight text-gray-900  hover:bg-blue-100 focus:outline-none focus-visible:ring focus-visible:ring-primary-500/75">
-                              <span className="text-gray-900 text-lg font-inter font-semibold leading-5 break-all">Breakdown</span>
+                            <Disclosure.Button className="flex w-full justify-between rounded-lg px-4 py-2 text-left text-md font-bold text-1 tracking-tight text-gray-900  hover:bg-blue-100 focus:outline-none focus-visible:ring focus-visible:ring-primary-500/75">
+                              <span className="text-gray-900 text-md font-inter font-semibold leading-4 break-all">Breakdown</span>
                               <PlusIcon
                                 className={`${open ? 'rotate-180 transform' : ''
                                   } h-5 w-5 text-gray-900`}
                               />
                             </Disclosure.Button>
 
-                            <div className='mt-4'>
+                            <div className='mt-2'>
                               <Disclosure.Panel className="px-4 pb-2 pt-4 text-md rounded-lg bg-white shadow py-2 text-gray-500 ">
 
                               </Disclosure.Panel>
