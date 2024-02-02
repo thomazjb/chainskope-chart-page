@@ -16,14 +16,6 @@
   }
 }
 
-.page-loading {
-  /* Adicione estilos personalizados aqui */
-  background-color: #ffffff; /* Cor de fundo */
-  color: #000000; /* Cor do texto */
-  border: 2px solid #000000; /* Cor da borda */
-  border-radius: 50%; /* Borda circular para o ícone */
-}
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
