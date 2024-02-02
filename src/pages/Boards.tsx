@@ -1,49 +1,35 @@
-"use client"
-import React from 'react';
-import dynamic from 'next/dynamic'
+"use client";
+import React, { useState } from 'react';
+import dynamic from 'next/dynamic';
 import metricsData from '@/utils/metricsData';
-import contractsData from '@/utils/contractsData'
-import chartsData from '@/utils/chartsData'
+import contractsData from '@/utils/contractsData';
+import chartsData from '@/utils/chartsData';
 import LineChart from '@/components/LineChart';
-import { Disclosure, Transition } from '@headlessui/react'
-import { ChevronDownIcon, PlusIcon } from '@heroicons/react/24/outline'
+import { Disclosure } from '@headlessui/react';
+import { ChevronDownIcon, PlusIcon } from '@heroicons/react/24/outline';
 import DateTabs from '@/components/DateTabs';
 import Link from 'next/link';
 
+const RootLayout = dynamic(() => import('@/app/layout'), { ssr: false });
 
-const RootLayout = dynamic(() => import('@/app/layout'), { ssr: false })
 const metrics = metricsData.data.data;
 const contracts = contractsData.data;
 
 function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(' ');
 }
-
-const tabs = [
-  { id: 'profile', label: 'Profile' },
-  { id: 'dashboard', label: 'Dashboard' },
-  { id: 'settings', label: 'Settings' },
-  { id: 'invoice', label: 'Invoice' },
-];
 export default function Boards() {
   const jsonData = chartsData;
-  const chartData = [
-    {
-      id: 'A: Transfer ERC-20',
-      data: Object.entries(jsonData[0].data.series['A: Transfer ERC-20']).map(([timestamp, value]) => ({
-        x: new Date(parseInt(timestamp)),
-        y: value,
-      })),
-    },
-    {
-      id: 'B: Transfer Test',
-      data: Object.entries(jsonData[1].data.series['A: Transfer ERC-20']).map(([timestamp, value]) => ({
-        x: new Date(parseInt(timestamp)),
-        y: value,
-      })),
-    }
-  ];
+  const chartData = jsonData.map((chart, index) => ({
+    id: `Chart-${index}`,
+    data: Object.entries(chart.data.series['A: Transfer ERC-20']).map(([timestamp, value]) => ({
+      x: new Date(parseInt(timestamp)),
+      y: value,
+    })),
+  }));
 
+  const [title, setTitle] = useState('Untitled');
+  const [description, setDescription] = useState('');
 
   return (
     <RootLayout>
@@ -51,8 +37,22 @@ export default function Boards() {
         <div className="flex flex-col h-screen">
           <header className="bg-white z-9 border-b border-gray-300">
             <div className="mx-auto max-w-8xl px-4 py-3 sm:px-4 lg:px-4 flex items-center">
-              <h1 className="text-2xl font-bold tracking-tight text-gray-900">Untitled</h1>
-              <p className="text-neutral-500 text-xs pl-2">+ Add description...</p>
+              <input
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                className="text-2xl font-bold tracking-tight text-gray-900 bg-transparent border-none focus:outline-none"
+                style={{ width: `${title.length * 0.6}em` }}
+              />
+              <div className="relative rounded-md text-neutral-500 text-xs pl-2">
+                <input
+                  type="text"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  className="rounded-md border-0 py-1.5 pr-20 text-gray-900 ring-0 focus:ring-0 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+                  placeholder="+ Add a description..."
+                />
+              </div>
             </div>
           </header>
           <main className="flex-1 overflow-y-auto">
@@ -168,7 +168,6 @@ export default function Boards() {
                         )}
                       </Disclosure>
                     </div>
-
                     <div className='mt-2'>
                       <Disclosure >
                         {({ open }) => (
@@ -208,8 +207,6 @@ export default function Boards() {
                   <LineChart data={chartData} />
                 </div>
               </div>
-
-
             </div>
           </main>
         </div>

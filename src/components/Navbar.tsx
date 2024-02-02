@@ -1,7 +1,7 @@
 "use client";
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, BellIcon, Cog8ToothIcon, QuestionMarkCircleIcon, XMarkIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
-import { Fragment, JSXElementConstructor, Key, PromiseLikeOfReactNode, ReactElement, ReactNode } from 'react';
+import { Bars3Icon, Cog8ToothIcon, QuestionMarkCircleIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Fragment } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 

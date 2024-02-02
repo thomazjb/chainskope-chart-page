@@ -27,7 +27,7 @@ const DateTabs = () => {
         const element = document.getElementById(`tab-${tab.id}`);
         return element ? element.scrollWidth : 0;
       });
-      setTabWidths(widths);
+     
     };
 
     calculateTabWidths();
