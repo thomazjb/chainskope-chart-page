@@ -8,6 +8,7 @@ import LineChart from '@/components/LineChart';
 import { Disclosure, Transition } from '@headlessui/react'
 import { ChevronDownIcon, PlusIcon } from '@heroicons/react/24/outline'
 import DateTabs from '@/components/DateTabs';
+import Link from 'next/link';
 
 
 const RootLayout = dynamic(() => import('@/app/layout'), { ssr: false })
@@ -123,7 +124,7 @@ export default function Boards() {
                             </div>
                             <hr className="my-4 border-t border-gray-300" />
                             <div className="flex items-center justify-center">
-                              <a href="#" className="text-gray-500 inline-flex items-center text-center hover:text-gray-900 transition duration-300">Add Another Source</a>
+                              <Link href="#" className="text-gray-500 inline-flex items-center text-center hover:text-gray-900 transition duration-300">Add Another Source</Link>
                             </div>
 
                           </Disclosure.Panel>
@@ -142,7 +143,7 @@ export default function Boards() {
                               />
                             </Disclosure.Button>
                             {metrics.map((metric) => (
-                              <div className='mt-2'>
+                              <div className="mt-2" key={metric.id}>
                                 <Disclosure.Panel className="px-4 pb-2 pt-4 text-md rounded-lg bg-white shadow py-2 text-gray-500 ">
                                   <div className="text-blue-600 text-xs font-medium font-inter leading-4">{metric.metric_display_name}</div>
                                   <span className="text-slate-500 text-xs font-medium font-inter leading-4">{metric.operations[6].operation_description} for HonToken (ERC20) on Avalanche C-Chain </span>

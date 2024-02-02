@@ -1,5 +1,6 @@
 // components/Tabs.tsx
 import React, { useState } from 'react';
+import Link from 'next/link';
 
 interface Tab {
   id: string;
@@ -17,7 +18,8 @@ const DateTabs: React.FC<TabsProps> = ({ tabs }) => {
     <div className="rounded-lg flex max-h-[40px] border-2">
       <nav className="flex max-h-[40px] w-2/5 font-inter text-xs font-bold ">
         {tabs.map((tab, index) => (
-          <a
+          <Link
+          href="#"
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             className={`cursor-pointer flex sm:px-4 text-center p-2 ${
@@ -29,7 +31,7 @@ const DateTabs: React.FC<TabsProps> = ({ tabs }) => {
             }`}
           >
             {tab.label}
-          </a>
+          </Link>
         ))}
       </nav>
     </div>
