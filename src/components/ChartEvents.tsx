@@ -55,7 +55,7 @@ const ChartEvents: React.FC<TableProps> = () => {
                         </td>
                         {Array.from({ length: 10 }, (_, colIndex) => (
                             <td key={colIndex} className={`p-2 text-right ${colIndex === 0 ? 'border-r border-neutral-300' : ''}`}>
-                                Col {colIndex + 1}
+                                {colIndex === 0 ? '500' : ('Col ' + colIndex)}
                             </td>
                         ))}
                     </tr>
