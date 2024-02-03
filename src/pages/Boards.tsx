@@ -5,6 +5,7 @@ import metricsData from '@/utils/metricsData';
 import contractsData from '@/utils/contractsData';
 import chartsData from '@/utils/chartsData';
 import LineChart from '@/components/LineChart';
+import ChartEvents from '@/components/ChartEvents';
 import { Disclosure } from '@headlessui/react';
 import { ChevronDownIcon, PlusIcon } from '@heroicons/react/24/outline';
 import DateTabs from '@/components/DateTabs';
@@ -202,6 +203,7 @@ export default function Boards() {
                 <div style={{ height: '400px' }} className='p-2'>
                   <LineChart data={chartData} />
                 </div>
+                <div><ChartEvents></ChartEvents></div>
               </div>
             </div>
           </main>
