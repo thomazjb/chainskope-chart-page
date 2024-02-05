@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { ResponsiveLine } from '@nivo/line';
 
 const LineChart = ({ data }:any) => {

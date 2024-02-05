@@ -18,7 +18,7 @@ const DateTabs = () => {
     { id: '12M', label: '12M' },
     { id: '24M', label: '24M' },
   ];
-  const [activeTab, setActiveTab] = useState(tabs[0].id);
+  const [activeTab, setActiveTab] = useState(tabs[2].id);
   const [tabWidths, setTabWidths] = useState<number[]>([]);
 
   useEffect(() => {

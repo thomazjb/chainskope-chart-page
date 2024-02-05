@@ -6,6 +6,7 @@ import contractsData from '@/utils/contractsData';
 import chartsData from '@/utils/chartsData';
 import LineChart from '@/components/LineChart';
 import ChartEvents from '@/components/ChartEvents';
+import Header from '@/components/Header';
 import { Disclosure } from '@headlessui/react';
 import { ChevronDownIcon, PlusIcon } from '@heroicons/react/24/outline';
 import DateTabs from '@/components/DateTabs';
@@ -17,9 +18,6 @@ const RootLayout = dynamic(() => import('@/app/layout'), { ssr: false });
 const metrics = metricsData.data.data;
 const contracts = contractsData.data;
 
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ');
-}
 export default function Boards() {
   const jsonData = chartsData;
   const chartData = jsonData.map((chart, index) => ({
@@ -29,9 +27,6 @@ export default function Boards() {
       y: value,
     })),
   }));
-
-  const [title, setTitle] = useState('Untitled');
-  const [description, setDescription] = useState('');
 
   const dataSourceItens = [
     {
@@ -55,26 +50,7 @@ export default function Boards() {
     <RootLayout>
       <>
         <div className="flex flex-col h-screen">
-          <header className="bg-white z-9 border-b border-gray-300">
-            <div className="mx-auto max-w-8xl px-4 py-3 sm:px-4 lg:px-4 flex items-center">
-              <input
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                className="text-2xl font-bold tracking-tight text-gray-900 bg-transparent border-none focus:outline-none"
-                style={{ width: `${title.length * 0.6}em` }}
-              />
-              <div className="relative rounded-md text-neutral-500 text-xs pl-2">
-                <input
-                  type="text"
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                  className="rounded-md border-0 py-1.5 pr-20 text-gray-900 ring-0 focus:ring-0 placeholder:text-gray-400 sm:text-sm sm:leading-6"
-                  placeholder="+ Add a description..."
-                />
-              </div>
-            </div>
-          </header>
+          <Header></Header>
           <main className="flex-1 overflow-y-auto">
             <div className="flex h-full">
               <div className="w-1/5 bg-neutral-100 max-w-4xl py-6 sm:px-2 lg:px-2 h-full border-r border-gray-300">
